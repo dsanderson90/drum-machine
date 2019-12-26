@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-
+import '../styles/DrumMachine.css'
 class DrumMachine extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      currentSound: 'Click a Drumpad or Press its corresponding key.',
       bankOne: [
         {
           keyCode: 81,
@@ -123,10 +124,26 @@ class DrumMachine extends Component {
   componentDidMount() {
     document.addEventListener('keydown', this.handleKeyDown)
   }
-  handleKeyDown = e => console.log(e)
+  handleKeyDown = e => {
+    this.state.bankOne.filter(el => {
+      if(e.which === el.keyCode) {
+        let audio = document.getElementById(el.keyTrigger)
+        audio.play();
+        this.setState({
+          currentSound: e.target.id
+        })
+      }
+    })
+}
   playClip = e => {
     e.target.firstChild.nextSibling.play();
+    let { id } = e.target
+    this.setState({
+      currentSound: id
+    })
   };
+
+
 
   render() {
     const { bankOne, bankTwo } = this.state;
@@ -142,11 +159,12 @@ class DrumMachine extends Component {
           src={option.url} />
       </button>
     ));
-
+    const { currentSound } = this.state
     return (
+
       <div id='drum-machine'>
-        <div id='display'></div>
-        <div>
+        <input type='text' id='display' value={currentSound} disabled/>
+        <div id='drum-pads'>
         {drumPads}
         </div>
       </div>
