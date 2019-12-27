@@ -5,9 +5,17 @@
 }
 
 #display {
-  color: white;
+  color: papayawhip;
   background-color: black;
-  margin: 0 25%;
+  margin: 2% 25%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  height: 10vh;
+  font-family: monospace;
+  font-size: 1.5em;
+  border: 3px solid pink
+
 }
 
 #drum-pads {
@@ -19,5 +27,5 @@
   width: 30%;                      /* don't grow, don't shrink, width */
   height: 50px;
   margin-bottom: 5px;
-  background-color: #999;
+  /* background-color: #999; */
 }
