@@ -126,11 +126,13 @@ class DrumMachine extends Component {
   }
   handleKeyDown = e => {
     this.state.bankOne.filter(el => {
-      if(e.which === el.keyCode) {
-        let audio = document.getElementById(el.keyTrigger)
+      let { keyCode, keyTrigger, id } = el
+      let { which } = e
+      if(which === keyCode) {
+        let audio = document.getElementById(keyTrigger)
         audio.play();
         this.setState({
-          currentSound: e.target.id
+          currentSound: id
         })
       }
     })
@@ -147,7 +149,7 @@ class DrumMachine extends Component {
 
   render() {
     const { bankOne, bankTwo } = this.state;
-    const drumPads = bankOne.map((option, i) => (
+    const drumPads = bankTwo.map((option, i) => (
       <button
         id={option.id}
         className='drum-pad'
@@ -163,7 +165,7 @@ class DrumMachine extends Component {
     return (
 
       <div id='drum-machine'>
-        <input type='text' id='display' value={currentSound} disabled/>
+        <div id='display'>{currentSound}</div>
         <div id='drum-pads'>
         {drumPads}
         </div>

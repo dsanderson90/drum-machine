@@ -1,14 +1,18 @@
-#drum-pads {
+#drum-pads, #display {
   display: flex;                       /* establish flex container */
   flex-wrap: wrap;                     /* enable flex items to wrap */
   justify-content: space-around;
 }
 
-input {
-  width: 30%;
-  height: 100px;
+#display {
+  color: white;
+  background-color: black;
+  margin: 0 25%;
 }
 
+#drum-pads {
+  margin: 0 25%;
+}
 
 .drum-pad {
   flex: 0 0 32%;
